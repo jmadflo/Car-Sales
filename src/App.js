@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { initialState } from './reducers/mainReducer'
 
+import { removeFeatureAction, addFeatureAction } from './actionCreators/mainActions'
 import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
@@ -11,10 +11,12 @@ const App = () => {
 
   const removeFeature = item => {
     // dispatch an action here to remove an item
+    props.removeFeatureAction(item)
   }
 
   const buyItem = item => {
-    // dipsatch an action here to add an item
+    // dispatch an action here to add an item
+    props.addFeatureAction(item)
   }
 
   return (
@@ -37,7 +39,6 @@ const mapStateToProps = state => {
     additionalFeatures: state.additionalFeatures,
     additionalPrice: state.additionalPrice
   })
-
 }
 
-export default connect(mapStateToProps, {})(App)
+export default connect(mapStateToProps, {removeFeatureAction, addFeatureAction})(App)
