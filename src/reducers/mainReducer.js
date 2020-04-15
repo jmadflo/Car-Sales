@@ -1,3 +1,5 @@
+import { REMOVE_FEATURE, ADD_FEATURE } from '../actionCreators/mainActions'
+
 export const initialState = {
     additionalPrice: 0,
     car: {
@@ -17,7 +19,7 @@ export const initialState = {
 
 export const mainReducer = (state = initialState, action) => {
     switch(action.type){
-        case 'REMOVE_FEATURE':
+        case REMOVE_FEATURE:
             return {
                 ...state,
                 additionalPrice: state.additionalPrice - action.payload.price, //lower price by price of removed item
@@ -27,7 +29,7 @@ export const mainReducer = (state = initialState, action) => {
                 },
                 additionalFeatures: [...state.additionalFeatures, action.payload] //add removed item back to additional features in case user wants to add it again
             }
-        case 'ADD_FEATURE':
+        case ADD_FEATURE:
             return {
                 ...state,
                 additionalPrice: state.additionalPrice + action.payload.price,
